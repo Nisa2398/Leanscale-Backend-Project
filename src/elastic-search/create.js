@@ -1,12 +1,22 @@
 var client = require('./connection.js');
 
-client.indices.create({  
-  index: 'gov'
-},function(err,resp,status) {
-  if(err) {
-    console.log(err);
+const result =  client.search({
+  index: 'my-index',
+  body: {
+    query: {
+      match: { hello: 'world' }
+    }
   }
-  else {
-    console.log("create",resp);
+})
+
+// callback API
+client.search({
+  index: 'my-index',
+  body: {
+    query: {
+      match: { hello: 'world' }
+    }
   }
-});
+}, (err, result) => {
+  if (err) console.log(err)
+})

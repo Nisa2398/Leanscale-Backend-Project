@@ -4,7 +4,7 @@ const {I18n} = require('i18n');
 const i18nUtils = require('../utils/i18n');
 const config = require('../config');
 require('dotenv').config();
-
+const { calculateLimitAndOffset, paginate } =require('paginate-info')
 
 exports.getCountries = (req, res, next) => {
   try{
@@ -60,6 +60,8 @@ exports.getCategories = (req, res, next) => {
     
 };
 exports.getProducts = (req, res, next) => {
+  var result=[]
+  
   try{
   axios
     .get(
@@ -74,14 +76,58 @@ exports.getProducts = (req, res, next) => {
         },
       }
     )
-    .then((response) => {
-      var result = response.data;
-      i18nUtils.setLocale(req.headers['accept-language']);
-      result['name'] = i18nUtils.translate(
-        result['name'],
-        req.headers['accept-language']
-      );
-      res.status(200).json(result);
+    .then(async(response) => {
+      var promises = [];
+      var total=0
+      let promiseArr = response.data.items.map(function (resource) {
+       return axios
+    .get(
+      'https://m2.leanscale.com/rest/default/V1/products?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]='+resource.id,
+      {
+        headers: {
+          consumerkey: 'utvqdmpw03uzwp6k5kyzdbiozm20d2s7',
+          consumersecret: 'g4iscqutq1iuj59nbcler2q4zkep9f68',
+          accesstoken: 'bib99ay5ulymg6jgu1ur095y6cf26tn4',
+          tokensecret: 'sl3lu6bvsnxinxf4fx77gb7bgja052t1',
+          Authorization: 'Bearer' + ' bib99ay5ulymg6jgu1ur095y6cf26tn4',
+        },
+      }
+    ).then((resp)=>{
+      total+=resp.data.total_count
+      console.log(resp.data)
+      return resp.data
+      // res.status(200).json(resp);
+    })
+       
+      })
+      Promise.all(promiseArr).then(async function(resultsArray){
+        let size=req.query.limit||20
+      const page=req.query.offset||0
+      const q = req.query.q
+      const { limit, offset } = calculateLimitAndOffset(page, size);
+      // async function search(resultsArray) {
+    //   return resultsArray.filter(product => {
+    //     if(product.items.length>0)
+    //     return product.items.filter(prod=>{
+    //       if(prod!=null)
+    //       console.log(prod.name.match(q).index)
+    //       prod.name.match(q).index>1||prod.custom_attributes[0].value.match(q).index>1   
+    //     })
+    //   });
+    // }
+      // const results = await search(resultsArray)
+
+        const paginatedData = resultsArray.slice(offset, offset + limit);
+        const count = resultsArray.length;
+       const paginationInfo = paginate(page, count, paginatedData);
+        res.status(200).json({result:paginatedData,offset:paginationInfo.currentPage,limit:paginationInfo.pageSize,total:total})
+
+     }).catch(function(error){
+      // console.log(error)
+      res.status(500).json({error:error});
+        // do something when any of the promises in array are rejected
+     })
+     
     }).catch(error=>{
       res.status(500).json({error:error});
     })
