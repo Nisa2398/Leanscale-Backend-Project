@@ -43,9 +43,15 @@ fs.createReadStream(path.join(path.dirname(__dirname), '/uploads/customer.csv'))
           return res.json();
         })
         .then((jsonData) => {
+          
           if (jsonData.success == true) {
             console.log('Added Customer',jsonData.id);
           }
+          else{
+            console.log('Error',jsonData.error);
+          }
+        }).catch(err=>{
+          console.log(err)
         })
       
     } 
