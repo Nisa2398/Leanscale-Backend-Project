@@ -1,0 +1,10 @@
+const express=require('express')
+const router=express.Router()
+const productRouter=require('../services/categoriesservice')
+const {userValidationRules,validate}=require('../validations/validation')
+router.get('/countries',productRouter.getCountries)
+router.get('/categories',productRouter.getCategories)
+router.get('/products',productRouter.getProducts)
+router.post('/customer',userValidationRules(),validate,productRouter.addCustomer)
+// router.post('/customercsv', productRouter.addCustomerViaCSV)
+module.exports=router
