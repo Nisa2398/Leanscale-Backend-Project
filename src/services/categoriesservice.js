@@ -32,7 +32,9 @@ exports.getCountries = (req, res, next) => {
   }
 };
 exports.getCategories = (req, res, next) => {
+  console.log(process.env.consumerkey)
   try{
+    
   axios
     .get('https://m2.leanscale.com/rest/default/V1/categories/1', {
       headers: {
@@ -50,11 +52,14 @@ exports.getCategories = (req, res, next) => {
         result['name'],
         req.headers['accept-language']
       );
+      console.log(result)
       res.status(200).json(result);
     }).catch(error=>{
+      console.log(error)
       res.status(500).json({error:error});
     })
   }catch(error){
+    console.log(error)
     res.status(500).json({error:error});
   }
     

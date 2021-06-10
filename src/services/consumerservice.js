@@ -26,7 +26,7 @@ fs.createReadStream(path.join(path.dirname(__dirname), '/uploads/customer.csv'))
     if(regex.test(row.password)==false){
         throw new UserException('Password must atleast have one specialcharacter, one alphabet and a number',row)
     }
-    fetch('http://localhost:3019/V1/customer', {
+    fetch('http://localhost:3020/V1/customer', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({

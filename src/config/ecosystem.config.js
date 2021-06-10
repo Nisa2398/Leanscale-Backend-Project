@@ -1,7 +1,7 @@
 const ecosystemConfig = {
     apps: [{
       name: 'app',
-      script: 'src/app.js',
+      script: '../app.js',
       instances: 1,
       autorestart: true,
       max_memory_restart: '500M',
