@@ -25,8 +25,10 @@ Leanscale uses Axios to fetch data from external APIs. You can find the API inte
 ### ElasticSearch
 The application uses ElasticSearch for efficient data searching. Make sure your ElasticSearch instance is running and configured correctly.
 ### API Endpoints
-- **GET /api/data:** Fetches and processes data from external APIs.
-- **POST /api/search:** Searches data using ElasticSearch.
+- **GET /countries:** Fetches and processes countries from external APIs.
+- **GET /products:** Fetches and processes products from external APIs.
+- **GET /categoris:** Fetches and processes categories from external APIs.
+- **POST /customer:** Add customer data.
 Refer to the `routes` directory for more information on available endpoints and their usage.
 ## Project Structure
 Leanscale/
