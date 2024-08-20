@@ -10,15 +10,19 @@ Leanscale is a well-organized and structured backend project built with Node.js 
 - **Language Conversion:** Language conversion using i18n.
 ## Installation
 1. **Clone the repository:**
-   git clone https://github.com/yourusername/leanscalebackendproject.git
+   bash```
+   git clone https://github.com/yourusername/Leanscale-Backend-Project.git
    cd leanscale
-2. **Install dependencies:**
+3. **Install dependencies:**
+   bash```
    npm install
-3. **Set up environment variables:**
+4. **Set up environment variables:**
    Create a `.env` file in the root directory and add the necessary configuration variables.
    Example .env file
+   bash```
    ACCESS_TOKEN=''
-4. **Run the application:**
+6. **Run the application:**
+   bash```
    npm start
 ## Usage
 ### External API Integration
