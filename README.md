@@ -7,9 +7,10 @@ Leanscale is a well-organized and structured backend project built with Node.js 
 - **ElasticSearch:** Efficient and scalable search functionality.
 - **Modular Architecture:** Well-structured codebase with clear separation of concerns.
 - **Error Handling:** Comprehensive error handling throughout the application.
+- **Language Conversion:** Language conversion using i18n.
 ## Installation
 1. **Clone the repository:**
-   git clone https://github.com/yourusername/leanscale.git
+   git clone https://github.com/yourusername/leanscalebackendproject.git
    cd leanscale
 2. **Install dependencies:**
    npm install
@@ -27,13 +28,13 @@ The application uses ElasticSearch for efficient data searching. Make sure your 
 ### API Endpoints
 - **GET /countries:** Fetches and processes countries from external APIs.
 - **GET /products:** Fetches and processes products from external APIs.
-- **GET /categoris:** Fetches and processes categories from external APIs.
+- **GET /categories:** Fetches and processes categories from external APIs.
 - **POST /customer:** Add customer data.
 Refer to the `routes` directory for more information on available endpoints and their usage.
 ## Project Structure
 Leanscale/
 │
-├── config/         # Configuration files
+├── config/         # Configuration files that include language conversion using i18n
 ├── data/    # data required
 ├── routers/         # Express routes
 ├── services/       # External API and business logic
