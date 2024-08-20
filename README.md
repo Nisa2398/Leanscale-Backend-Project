@@ -7,9 +7,20 @@ Leanscale is a well-organized and structured backend project built with Node.js 
 - **ElasticSearch:** Efficient and scalable search functionality.
 - **Modular Architecture:** Well-structured codebase with clear separation of concerns.
 - **Error Handling:** Comprehensive error handling throughout the application.
-- **Logging:** Integrated logging for monitoring and debugging.
+- 
 ## Installation
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/yourusername/leanscale.git
    cd leanscale
+
+2. **Install Dependencies:**
+   ```bash
+   npm install
+
+3. **Set up environment variables:**
+   ```bash
+   PORT=3000
+   NODE_ENV=development
+   API_KEY=your_api_key
+   ELASTICSEARCH_HOST=localhost
