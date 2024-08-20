@@ -15,7 +15,7 @@ Leanscale is a well-organized and structured backend project built with Node.js 
    npm install
 3. **Set up environment variables:**
    Create a `.env` file in the root directory and add the necessary configuration variables.
-   # Example .env file
+   Example .env file
    ACCESS_TOKEN=''
 4. **Run the application:**
    npm start
